@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="../assets/css/sign.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js" integrity="sha512-JWQFV6OCC2o2x8x46YrEeFEQtzoNV++r9im8O8stv91YwHNykzIS2TbvAlFdeH0GVlpnyd79W0ZGmffcRi++Bw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+
+
+    <section class="nav-bar">
+        <nav>
+            <a href="./index.html" class="logo">My App</a>
+            <ul class="nav-links">
+                <li><a href="./signup.html">Signup</a></li>
+                <li><a href="./login.html">Login</a></li>
+                <li><a href="./profile.html">Profile</a></li>
+                <li><a href="">Logout</a></li>
+            </ul>
+        </nav>
+    </section>
+
+
+    <section class="form-section">
+    <form onsubmit="signup()" >
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter 10-digit phone number"
+            required>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</section>
+    <p id="show"></p>
+
+    <script>
+
+
+
+        function signup() {
+            const url = 'http://localhost:8080/users';
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let phone = document.getElementById("phone").value;
+
+
+            const userobj = {
+                email: email,
+                password: password,
+                name: name,
+                phonenumber: phone
+            };
+
+            fetch(url).then(res => {
+                return res.json()
+
+            })
+                .then(res => {
+                    console.log(res)
+                })
+
+            const requestoption = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userobj)
+            }
+            fetch(url, requestoption).then(res => {
+                return res.json();
+            })
+                .then(res => {
+                    alert("created successfully")
+                })
+
+        }
+
+        // Below the code get method 
+        axios.get('http://localhost:8080/users').then(res=>{
+           const userDetails = res.data;
+           console.log(userDetails);
+           console.log(userDetails[0].name);
+           console.log(userDetails[0].password);
+        })
+
+
+    </script>
+</body> 
+
+</html>
