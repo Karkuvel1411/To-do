@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <link rel="stylesheet" href="../assets/css/sign.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js" integrity="sha512-JWQFV6OCC2o2x8x46YrEeFEQtzoNV++r9im8O8stv91YwHNykzIS2TbvAlFdeH0GVlpnyd79W0ZGmffcRi++Bw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js"
+        integrity="sha512-JWQFV6OCC2o2x8x46YrEeFEQtzoNV++r9im8O8stv91YwHNykzIS2TbvAlFdeH0GVlpnyd79W0ZGmffcRi++Bw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
-
 
     <section class="nav-bar">
         <nav>
@@ -24,84 +25,130 @@
         </nav>
     </section>
 
-
     <section class="form-section">
-    <form onsubmit="signup()" >
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <form onsubmit="signup(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required pattern="[a-zA-Z]+">
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+        
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&amp;*_=+-]).{8,24}$" maxlength="10" minlength="8" title="Please give one uppercase, one lowercase, one special character and one number miniumum is 8 character maximum 10 characters">
+        
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter 10-digit phone number" required>
+        
+            <button onclick="otpgen()" type="submit">Send otp</button>
+        </form>
+        
+        <!-- popup -->
+        <div class="popup-form">
+            <div class="popup-container" id="otpPopup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup()">X</span>
+                    <h2>Enter Your OTP</h2>
+                    <input type="text" id="otp_inp" placeholder="Enter OTP">
+                    <button  id="otp-btn">Verify</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter 10-digit phone number"
-            required>
-
-        <button type="submit">Submit</button>
-
-    </form>
-</section>
-    <p id="show"></p>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
     <script>
+      const email = document.getElementById("email").value;
+      const pass  = document.getElementById("password").value;
 
-
-
-        function signup() {
-            const url = 'http://localhost:8080/users';
-
-            event.preventDefault();
-
-            let name = document.getElementById("name").value;
-            let email = document.getElementById("email").value;
-            let password = document.getElementById("password").value;
-            let phone = document.getElementById("phone").value;
-
-
-            const userobj = {
-                email: email,
-                password: password,
-                name: name,
-                phonenumber: phone
-            };
-
-            fetch(url).then(res => {
-                return res.json()
-
-            })
-                .then(res => {
-                    console.log(res)
-                })
-
-            const requestoption = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(userobj)
+        let otp_val;
+        function otpgen() {
+            if(pass == " "){
+         alert("Password can not be empty")
             }
-            fetch(url, requestoption).then(res => {
-                return res.json();
-            })
-                .then(res => {
-                    alert("created successfully")
-                })
+            event.preventDefault();
+            document.getElementById('otpPopup').style.display = 'flex';
 
+
+            // Generating random number as OTP;
+            otp_val = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+
+            console.log(otp_val);
+
+            let emailbody = `
+            <h1>Hi Buddy.....! I am Bot </h1> <br>
+            <h2>Your OTP is </h2>
+            <h1>${otp_val}</h1
+        `;
+            console.log(emailbody)
+
+            Email.send({
+                Host: "smtp.elasticemail.com",
+                Username: "malarraj712@gmail.com",
+                Password: "E31D09310F904B1C782C3139234E419C4B1F",
+                To: email,
+                From: "malarraj712@gmail.com",
+                Subject: "This is from Ash_is_Coding, Please Subscribe",
+                Body: emailbody
+            }).then(
+                message => {
+                    alert("OTP sent to your email " + email);
+                }
+            );
+        }
+        function closePopup() {
+            document.getElementById("otpPopup").style.display = "none";
         }
 
-        // Below the code get method 
-        axios.get('http://localhost:8080/users').then(res=>{
-           const userDetails = res.data;
-           console.log(userDetails);
-           console.log(userDetails[0].name);
-           console.log(userDetails[0].password);
-        })
+        document.getElementById('otp-btn').addEventListener('click', function () {
+            document.getElementById("otpPopup").style.display = "flex";
+            const otp_inp = document.getElementById('otp_inp');
+            if (otp_inp.value == otp_val) {
 
+                const url = 'http://localhost:8080/users';
 
+                event.preventDefault();
+
+                let name = document.getElementById("name").value.trim();
+                let email = document.getElementById("email").value.trim();
+                let password = document.getElementById("password").value.trim();
+                let phone = document.getElementById("phone").value.trim();
+
+                const userobj = {
+                    email: email,
+                    password: password,
+                    name: name,
+                    phonenumber: phone
+                };
+                console.log(userobj);
+                fetch(url).then(res => {
+                    return res.json()
+                })
+                    .then(res => {
+                        console.log(res)
+                    })
+
+                const requestoption = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userobj)
+                }
+                fetch(url, requestoption).then(res => {
+                    return res.json();
+                })
+                    .then(res => {
+                        alert("Account Created Successfully");
+                    })
+                alert("Email address verified...");
+            }
+            else {
+                alert("Invalid OTP");
+            }
+        });
     </script>
-</body> 
+
+</body>
 
 </html>
