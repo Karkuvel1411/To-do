@@ -1,4 +1,4 @@
-function login(event) {
+function signin(event) {
     event.preventDefault();
     const email = document.getElementById("useremail").value;
     const password = document.getElementById("password").value;

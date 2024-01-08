@@ -8,22 +8,14 @@
     
 </head>
 <body>
-    <section class="nav-bar">
-        <nav>
-            <a href="./index.html" class="logo">My App</a>
-            <ul class="nav-links">
-                <li><a href="./signup.html">Signup</a></li>
-                <li><a href="./login.html">Login</a></li>
-                <li><a href="./profile.html">Profile</a></li>
-                <li><a href="">Logout</a></li>
-            </ul>
-        </nav>
-    </section>
+    <header id="userLogin">
+
+    </header>
     
 <section class="login">
 <div class="login-container">
     <h2>Login</h2>
-    <form class="login-form" onsubmit="login(event)">
+    <form class="login-form" onsubmit="signin(event)">
         <label for="username">Useremail:</label>
         <input type="text" id="useremail" name="username" required autofocus>
     
@@ -32,7 +24,8 @@
         <input type="submit" value="Login">
         <p>Don't have an account? <a href="signup.html">Sign up</a></p>
     </form> 
-    
+    <script src="../assets/js/header.js"></script>
+
 <script src="../assets/js/login.js"></script>
     
 

@@ -1,10 +1,23 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 1px;
-    background-color: #f5f5f5;
-
+    padding: 0;
+    list-style: none;
+    font-family: 'Lato', sans-serif;
+    line-height: 1;
+    text-decoration: none;
 }
+@font-face {
+    font-family: myFirstFont;
+    src: url(sansation_light.woff);
+ }
+ 
+ @font-face {
+    font-family: myFirstFont;
+    src: url(sansation_bold.woff);
+    font-weight: bold;
+ }
+ 
+
 
 nav {
     background-color: #2c3e50;
@@ -62,57 +75,118 @@ nav {
     cursor: pointer; 
     
 }
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* New ui */
+
+.task-list {
+    max-width: 1000px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-h1 {
+h2 {
+    font-size: 26px;
+    margin: 20px 0;
     text-align: center;
-}
- .form-con{
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 70vh;
+
+    small {
+        font-size: 0.5em;
+    }
 }
 
-.todo-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+.responsive-table {
+    li {
+        border-radius: 3px;
+        padding: 25px 30px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .table-header {
+        background-color: #95A5A6;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    .table-row {
+        background-color: #ffffff;
+        box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .col-1 {
+        text-align: start;
+        flex-basis: 27%;
+    }
+
+    .col-2 {
+        flex-basis: 15%;
+    }
+
+    .col-3 {
+        flex-basis: 15%;
+    }
+
+    .col-4 {
+        flex-basis: 20%;
+    }
+
+    @media all and (max-width: 767px) {
+        .table-header {
+            display: none;
+        }
+
+        .table-row {}
+
+        li {
+            display: block;
+        }
+
+        .col {
+
+            flex-basis: 100%;
+
+        }
+
+        .col {
+            display: flex;
+            padding: 10px 0;
+
+            &:before {
+                color: #6C7A89;
+                padding-right: 10px;
+                content: attr(data-label);
+                flex-basis: 50%;
+                text-align: right;
+            }
+        }
+    }
 }
 
-.todo-form label {
-    display: block;
-    margin-bottom: 8px;
+.Pr-1 {
+    color: red;
+    margin-left: 15px;
 }
 
-.todo-form input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 16px;
-    box-sizing: border-box;
+.Pr-2 {
+    color: orange;
 }
 
-.todo-form button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    width: 100%;
+.Pr-3 {
+    color: rgba(168, 151, 3, 0.722);
 }
+
+.yet-todo {
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(14, 197, 14);
+}
+/* New Ended */
+
+
 
         /* Style for the link */
         .taskadd {
@@ -142,34 +216,7 @@ h1 {
             transition: background-color 0.3s ease;
         }
 
-        /* Hover effect for the link and the button */
-        .taskadd:hover,
-        .taskadd button:hover {
-            background-color: #2c3a4f;
-            /* Darker background color on hover */
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 80%;
-            margin: 20px auto;
-        }
-
-        th,
-        td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
+      
 
         /* popup */
         .popup-container {
@@ -273,3 +320,33 @@ h1 {
         .editbtn:hover {
             background-color: #45a049;
         }
+
+
+        /* Add this CSS to your existing stylesheet */
+
+/* Edit button style */
+button.edit-btn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+/* Delete button style */
+button.delete-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 8px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Hover effect for both buttons */
+button.edit-btn:hover,
+button.delete-btn:hover {
+    opacity: 0.8;
+}

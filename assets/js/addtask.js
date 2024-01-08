@@ -5,6 +5,7 @@ function addTask() {
     if (localStorage.getItem("userId") !== null) {
         let title = document.getElementById('title').value;
         let description = document.getElementById('desc').value;
+        
         let userid = localStorage.getItem("userId")
         var date = new Date();
         var n = date.toDateString();

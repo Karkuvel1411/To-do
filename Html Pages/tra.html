@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio Buttons</title>
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="../assets/css/tra.css">
 </head>
-
 <body>
 
-    <section>
-        <p>Status: <span id="status">Pending</span></p>
-        <img src="../assets/Images/Green_tick.svg.png" width="20px" id="finish" alt="" srcset="">
-        <img src="../assets/Images/Red_X.svg.png" width="20px" id="notfinish" alt="" srcset="">
+<div class="container">
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-2">Tasks</div>
+            <div class="col col-1">Tasks</div>
+            <div class="col col-2">Due Date</div>
+            <div class="col col-3">Status</div>
+            <div class="col col-4">Action</div>
+        </li>
+        <li class="table-row">
+            <div class="col col-2" data-label="Task Name">Running 10KM</div>
+            <div class="col col-1" data-label="Task Name">Running 10KM</div>
+            <div class="col col-2" data-label="Due Date">16/01/2024</div>
+            <div class="col col-3" data-label="Priority"><span class="Pr-1">complete</span></div>
+            <div class="col col-4">
+                <button onclick="openEditPopup(${data[i].id}, '${data[i].Title}', '${data[i].Desc}')">Edit</button>
+                <button onclick="deleteTask(${data[i].id})">Delete</button>
+                <img src="../assets/Images/Green_tick.svg.png" onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
+                <img src="../assets/Images/Red_X.svg.png" width="20px" height="20px" class="notcomplete" alt="">
+            </div>
+        </li>
+    </ul>
+</div>
 
-        <script type="module" src="./util.js"></script>p
-        <script>
-
-            const statusElement = document.getElementById("status");
-            const finishRadio = document.getElementById("finish");
-            const notFinishRadio = document.getElementById("notfinish");
-
-            finishRadio.addEventListener("click", function () {
-                updateStatus("Completed");
-            });
-
-            notFinishRadio.addEventListener("click", function () {
-                updateStatus("Not Completed");
-            });
-
-            function updateStatus(status) {
-                statusElement.innerHTML = status;
-            }
-        </script>
-    </section>
 </body>
-
 </html>

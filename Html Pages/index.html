@@ -6,21 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do App</title>
     <link rel="stylesheet" href="../assets/css/index.css">
-
-
+   
 </head>
 
 <body>
+   <header id="userLogin">
 
-    <nav>
-        <a href="#" class="logo">My App</a>
+   </header>
+    <!-- <nav>
+        <a href="./index.html" class="logo">My App</a>
         <ul class="nav-links">
             <li><a href="./signup.html">Signup</a></li>
             <li><a href="./login.html">Login</a></li>
             <li><a href="./profile.html">Profile</a></li>
             <li class="popup" id="openPopupBtn">Logout</li>
         </ul>
-    </nav>
+    </nav> -->
     <div id="popup" class="popup-container">
         <div class="popup-content">
             <h2>Are You Sure...!</h2>
@@ -47,7 +48,22 @@
     <a class="taskadd" href="./Addtask.html"><button>Add Task</button></a>
   
 <h1>TASK LIST</h1>
-<div id="taskList" class="task-list"></div>
+
+
+<div id="taskList" class="task-list">
+        <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-2">Tasks</div>
+            <div class="col col-1">Tasks</div>
+            <div class="col col-2">Due Date</div>
+            <div class="col col-3">Status</div>
+            <div class="col col-4">Actions</div>
+
+        </li>
+    </ul>
+</div>
+
+<script src="../assets/js/header.js"></script>
 <script src="../assets/js/index.js"></script>
 </body>
 
