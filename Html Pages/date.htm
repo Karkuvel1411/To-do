@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date-fns Example</title>
+</head>
+<body>
+  <!-- Include date-fns from a CDN -->
+  <script src="https://cdn.skypack.dev/date-fns@2.23.0"></script>
+
+  <script>
+    // Now you can use date-fns functions
+    const today = new Date();
+    const formattedDate = dateFns.format(today, 'yyyy-MM-dd HH:mm:ss');
+    console.log(`Formatted Date: ${formattedDate}`);
+  </script>
+</body>
+</html>

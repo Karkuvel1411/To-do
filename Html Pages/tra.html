@@ -1,153 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
-    <title>Edit Task Popup</title>
-    <style>
-    /* signup */
-
- .form-section{
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-label {
-    display: block;
-    margin-bottom: 8px;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 16px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    background-color: #4caf50;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-
-/* popup */
-
-body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-
-        .popup-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        input {
-            padding: 10px;
-            margin: 10px;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Buttons</title>
 </head>
+
 <body>
-    
-    
-    
-        <section class="form-section">
-            
-        <form onsubmit="signup(event)" >
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-    
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-    
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-    
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter 10-digit phone number"
-                required>
 
-    
-            <button  type="submit">Send otp</button>
-    
-        </form>
+    <section>
+        <p>Status: <span id="status">Pending</span></p>
+        <img src="../assets/Images/Green_tick.svg.png" width="20px" id="finish" alt="" srcset="">
+        <img src="../assets/Images/Red_X.svg.png" width="20px" id="notfinish" alt="" srcset="">
 
-        <div class="popup-container" id="otpPopup">
-            <div class="popup-content">
-                <span class="close-btn" onclick="closePopup()">X</span>
-                <h2>Enter Your OTP</h2>
-                <input type="text" id="otp_inp" placeholder="Enter OTP">
-                <button  id="otp-btn">Verify</button>
-            </div>
-        </div>
+        <script type="module" src="./util.js"></script>p
+        <script>
+
+            const statusElement = document.getElementById("status");
+            const finishRadio = document.getElementById("finish");
+            const notFinishRadio = document.getElementById("notfinish");
+
+            finishRadio.addEventListener("click", function () {
+                updateStatus("Completed");
+            });
+
+            notFinishRadio.addEventListener("click", function () {
+                updateStatus("Not Completed");
+            });
+
+            function updateStatus(status) {
+                statusElement.innerHTML = status;
+            }
+        </script>
     </section>
-
 </body>
+
 </html>
