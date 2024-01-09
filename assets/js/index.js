@@ -37,6 +37,16 @@ function tasklist(data) {
         const taskWrapper = document.createElement('div');
         taskWrapper.classList.add('container');
 
+        let statusCode = "";
+
+        if(data[i].status == 1){
+            statusCode = "Completed"
+        }else if(data[i].status == 2){
+            statusCode = "Hold"
+        }else{
+            statusCode = "Pending"
+        }
+
         taskWrapper.innerHTML = `
      <ul class="responsive-table">
                
@@ -44,7 +54,7 @@ function tasklist(data) {
          <div class="col col-2" data-label="Task Name">${data[i].Title}</div>
          <div class="col col-1" data-label="Task Name">${data[i].Desc}</div>
          <div class="col col-2" data-label="Due Date"> ${data[i].date}</div>
-         <div class="col col-3" data-label="Priorty"><span class="Pr-1">Pending</span></div>
+         <div class="col col-3" data-label="Priorty"><span class="Pr-1">${statusCode}</span></div>
          <button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}','${data[i].Date}')">Edit</button>
          <button class="delete-btn" onclick="deleteTask(${data[i].id})">Delete</button>
          
@@ -96,7 +106,8 @@ function updateTask() {
         Desc: localDescription,
         UserId: userId,
         id: localId,
-        Date: new Date(date).toLocaleDateString(), 
+        Date: new Date(date).toLocaleDateString()
+         
     };
     JSON.stringify(localStorage.setItem("updatetask", updatedTask))
     console.log(updatedTask)
@@ -154,7 +165,52 @@ function deleteTask(taskId) {
             alert('Error deleting task:', error);
         });
 }
+function completeTask(TaskComid){
+   console.log(TaskComid);
+    // Retrieve task details from localStorage
+    let localId = localStorage.getItem("TaskId");
+    let date = localStorage.getItem("TaskDate");
+    let localTitle = localStorage.getItem("TaskName")
+    let localDescription = localStorage.getItem("TaskDescription")
+    let userId = localStorage.getItem("userId");
 
+    const updatedTask = {
+        Title: localTitle,
+        Desc: localDescription,
+        UserId: userId,
+        id: localId,
+        Date: new Date(date).toLocaleDateString(),
+        status:1
+         
+    };
+    JSON.stringify(localStorage.setItem("updatetask", updatedTask))
+    console.log(updatedTask)
+
+    // Fetch to update the task on the server
+    fetch(`http://localhost:8080/tasks/${TaskComid}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedTask),
+    })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            } else {
+                return res.json();
+                console.log(res,json());
+            }
+        })
+        .then(data => {
+            console.log(data);
+            // Close the edit form overlay after updating
+            document.getElementById("editOverlay").style.display = "none";
+        })
+        .catch(error => {
+            console.error('Error updating task:', error);
+        });
+}
 
 
 

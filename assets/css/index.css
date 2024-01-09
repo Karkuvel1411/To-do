@@ -45,7 +45,7 @@ nav {
 
 .nav-links a  {
     position: relative;
-    top: 12px;
+    /* top: 12px; */
     text-decoration: none;
     color: #ecf0f1;
     font-weight: bold;

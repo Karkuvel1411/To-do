@@ -18,7 +18,8 @@ function addTask() {
             Title: title,
             Desc: description,
             date: n,
-            UserId:userid
+            UserId:userid,
+            status:0
         }
 
         const requestOption = {

@@ -1,11 +1,10 @@
-const email = document.getElementById("email").value;
-        const pass = document.getElementById("password").value;
-
-        let otp_val;
+ let otp_val;
         function signup(event) {
-            if (pass == " ") {
-                alert("Password can not be empty")
-            }
+
+            let gmail = document.getElementById("gmail").value;
+console.log(gmail+'jdijdijdf')
+const pass = document.getElementById("password").value;
+         
             event.preventDefault();
             document.getElementById('otpPopup').style.display = 'flex';
 
@@ -24,15 +23,15 @@ const email = document.getElementById("email").value;
 
             Email.send({
                 Host: "smtp.elasticemail.com",
-                Username: "malarraj712@gmail.com",
-                Password: "E31D09310F904B1C782C3139234E419C4B1F",
-                To: email,
+                Username: "malarraj@gmail.com",
+                Password: "6101B16B9F0E2A6A2C720FC4550102DCE027",
+                To: gmail,
                 From: "malarraj712@gmail.com",
-                Subject: "TAAHA Registration Conformation OTP",
+                Subject: "To-Do App Registration Conformation OTP",
                 Body: emailbody
             }).then(
                 message => {
-                    alert("OTP sent to your email " + email);
+                    alert("OTP sent to your email " + gmail);
                 }
             );
         }
@@ -50,7 +49,7 @@ const email = document.getElementById("email").value;
                 event.preventDefault();
 
                 let name = document.getElementById("name").value.trim();
-                let email = document.getElementById("email").value.trim();
+                let email = document.getElementById("gmail").value.trim();
                 let password = document.getElementById("password").value.trim();
                 let phone = document.getElementById("phone").value.trim();
 

@@ -30,17 +30,20 @@ const before_login = `
 </ul>
 </nav>
 `;
-
 function header() {
   const userId = JSON.parse(localStorage.getItem("userId"));
-  const userlogin = document.getElementById("userLogin");
+  console.log(userId)
+  const UserLogin = document.getElementById("userLogin");
 
   if (!userId) {
-    userlogin.innerHTML = before_login;
+    UserLogin.innerHTML = before_login;
   } else {
-    userlogin.innerHTML = after_login;
+    UserLogin.innerHTML = after_login;
   }
 }
+
+
+header()
 //    Log out popup
 
 
