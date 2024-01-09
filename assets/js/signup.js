@@ -60,10 +60,12 @@ const pass = document.getElementById("password").value;
                     phonenumber: phone
                 };
                 console.log(userobj);
+                
                 fetch(url).then(res => {
                     return res.json()
                 })
                     .then(res => {
+    
                         console.log(res)
                     })
 

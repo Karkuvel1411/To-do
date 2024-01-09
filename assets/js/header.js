@@ -14,7 +14,7 @@ const after_login = `
             <li><a href="${sign_up}">Signup</a></li>
             <li><a href="${login}">Login</a></li>
             <li><a href="${profile}">Profile</a></li>
-            <li class="popup" onclick="openPopup()" id="openPopupBtn">Logout</li>
+            <li><a onclick="openPopup()" id="openPopupBtn">Logout</a></li>
         </ul>
     </nav>
 `;
