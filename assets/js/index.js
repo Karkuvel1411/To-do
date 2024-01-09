@@ -59,7 +59,7 @@ function tasklist(data) {
          <button class="delete-btn" onclick="deleteTask(${data[i].id})">Delete</button>
          
          <img src="../assets/Images/Green_tick.svg.png" onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
-         <img src="../assets/Images/Red_X.svg.png" width="20px" height="20px" class="notcomplete" alt="">
+         <img src="../assets/Images/Red_X.svg.png" width="20px" height="20px" onclick="holdTask(${data[i].id})"  class="notcomplete" alt="">
      </li>
  </ul>
      `;
@@ -165,29 +165,50 @@ function deleteTask(taskId) {
             alert('Error deleting task:', error);
         });
 }
-function completeTask(TaskComid){
-   console.log(TaskComid);
-    // Retrieve task details from localStorage
-    let localId = localStorage.getItem("TaskId");
-    let date = localStorage.getItem("TaskDate");
-    let localTitle = localStorage.getItem("TaskName")
-    let localDescription = localStorage.getItem("TaskDescription")
-    let userId = localStorage.getItem("userId");
+function completeTask(TaskComid) {
+    // console.log(TaskComid);
+    event.preventDefault();
+
+    // Send a request to the server to delete the task
+    const statusurl = `http://localhost:8080/tasks/${TaskComid}`;
+
+    fetch(statusurl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Call finishtask with the retrieved data
+            finishtask(data.id, data.Desc, data.Title, data.status=1, data.UserId);
+        })
+        .catch(error => {
+            alert('Error deleting task:', error);
+        });
+}
+
+function finishtask(finishtaskid, finishtaskdesc, finishtasktitle, finishtaskstatus, finishtaskuserid) {
+    // e.preventDefault();
+    let a = finishtaskid;
+    let b = finishtaskdesc;
+    let c = finishtasktitle;
+    let d = finishtaskstatus;
+    let e = finishtaskuserid;
+    console.log(e, b, c, d, a);
 
     const updatedTask = {
-        Title: localTitle,
-        Desc: localDescription,
-        UserId: userId,
-        id: localId,
-        Date: new Date(date).toLocaleDateString(),
-        status:1
-         
+        Title: c,
+        Desc: b,
+        UserId: e,
+        id: a,
+        status: d,
+        Date: new Date().toLocaleDateString(), // Fixed the 'date' issue
     };
-    JSON.stringify(localStorage.setItem("updatetask", updatedTask))
-    console.log(updatedTask)
 
-    // Fetch to update the task on the server
-    fetch(`http://localhost:8080/tasks/${TaskComid}`, {
+    console.log(updatedTask);
+
+    fetch(`http://localhost:8080/tasks/${a}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -197,15 +218,86 @@ function completeTask(TaskComid){
         .then(res => {
             if (!res.ok) {
                 throw new Error(`HTTP error! Status: ${res.status}`);
-            } else {
-                return res.json();
-                console.log(res,json());
             }
+            // Removed the unreachable console.log and added return statement
+            return res.json();
         })
         .then(data => {
             console.log(data);
+
             // Close the edit form overlay after updating
-            document.getElementById("editOverlay").style.display = "none";
+            // document.getElementById("editOverlay").style.display = "none";
+        })
+        .catch(error => {
+            console.error('Error updating task:', error);
+        });
+}
+
+ 
+// Hold function Added
+
+function holdTask(holdid) {
+    // console.log(TaskComid);
+    event.preventDefault();
+
+    // Send a request to the server to delete the task
+    const statusurl = `http://localhost:8080/tasks/${holdid}`;
+
+    fetch(statusurl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Call finishtask with the retrieved data
+            taskhold(data.id, data.Desc, data.Title, data.status=2, data.UserId);
+        })
+        .catch(error => {
+            alert('Error deleting task:', error);
+        });
+}
+
+function taskhold(holdtaskid, holdtaskdesc, holdtasktitle, holdtaskstatus, holdtaskuserid) {
+    // e.preventDefault();
+    let a = holdtaskid;
+    let b = holdtaskdesc;
+    let c = holdtasktitle;
+    let d = holdtaskstatus;
+    let e = holdtaskuserid;
+    console.log(e, b, c, d, a);
+
+    const updatedTask = {
+        Title: c,
+        Desc: b,
+        UserId: e,
+        id: a,
+        status: d,
+        Date: new Date().toLocaleDateString(), // Fixed the 'date' issue
+    };
+
+    console.log(updatedTask);
+
+    fetch(`http://localhost:8080/tasks/${a}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedTask),
+    })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+            // Removed the unreachable console.log and added return statement
+            return res.json();
+        })
+        .then(data => {
+            console.log(data);
+
+            // Close the edit form overlay after updating
+            // document.getElementById("editOverlay").style.display = "none";
         })
         .catch(error => {
             console.error('Error updating task:', error);
