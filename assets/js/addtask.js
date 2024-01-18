@@ -40,6 +40,8 @@ function addTask() {
                 console.log(err);
                 alert('An error occurred. Please try again later.');
             });
+            location.href = "../../Html_pages/index.html";
+
     } else {
         alert("You are not logged in");
     }

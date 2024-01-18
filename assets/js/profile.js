@@ -28,9 +28,9 @@ fetch(url)
         console.log("User Name:", username);
         console.log("User Phone Number:", usernumber);
         console.log("Current User:", currentuser);
-       email.innerHTML=usermail;
-       document.getElementById("name").innerHTML = username;
-       number.innerHTML=usernumber;
+        document.getElementById("name").value=usermail;
+       document.getElementById("email").value= username;
+       document.getElementById("number").value=usernumber;
 
 
     })

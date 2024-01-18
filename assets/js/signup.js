@@ -81,8 +81,10 @@ const pass = document.getElementById("password").value;
                 })
                     .then(res => {
                         alert("Account Created Successfully");
+                        
+
                     })
-                alert("Email address verified...");
+                    location.href = "../../Html_Pages/login.html";
             }
             else {
                 alert("Invalid OTP");

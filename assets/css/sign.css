@@ -92,7 +92,7 @@ input {
     border-radius: 4px;
 }
 
-button {
+.verify {
     background-color: #4caf50;
     color: #fff;
     padding: 10px 15px;
@@ -101,7 +101,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.verify:hover {
     background-color: #45a049;
 }
 

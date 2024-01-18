@@ -22,7 +22,7 @@
             <input type="text" id="name" name="name" required pattern="[A-Za-z\s]{1,}">
 
             <label for="email">Email:</label>
-            <input type="email" id="gmail" name="email" required>
+            <input type="email" id="gmail" name="email" pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" required>

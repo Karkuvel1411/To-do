@@ -58,16 +58,14 @@ function tasklist(data) {
          <button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}','${data[i].Date}')">Edit</button>
          <button class="delete-btn" onclick="deleteTask(${data[i].id})">Delete</button>
          
-         <img src="../assets/Images/Green_tick.svg.png" onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
-         <img src="../assets/Images/Red_X.svg.png" width="20px" height="20px" onclick="holdTask(${data[i].id})"  class="notcomplete" alt="">
+         <img src="../assets/Images/Green_tick.svg.png"  onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
+         <img src="../assets/Images/Red_X.svg.png" width="20px" id="holdnone" height="20px" onclick="holdTask(${data[i].id})"  class="notcomplete" alt="">
      </li>
  </ul>
      `;
 
         taskList.appendChild(taskWrapper);
     }
-
-
 
 }
 
@@ -109,9 +107,13 @@ function updateTask() {
         Date: new Date(date).toLocaleDateString()
          
     };
+    if (!localTitle.trim() && !localDescription.trim()) {
+        alert("Title and Deacription Can not be empty")
+     }else{
     JSON.stringify(localStorage.setItem("updatetask", updatedTask))
     console.log(updatedTask)
 
+ 
     // Fetch to update the task on the server
     fetch(`http://localhost:8080/tasks/${localId}`, {
         method: 'PUT',
@@ -136,6 +138,7 @@ function updateTask() {
         .catch(error => {
             console.error('Error updating task:', error);
         });
+}
 }
 
 // This function we delete a that task so we write a delete function
@@ -166,6 +169,7 @@ function deleteTask(taskId) {
         });
 }
 function completeTask(TaskComid) {
+    document.getElementById("holdnone").style.display = 'none';
     // console.log(TaskComid);
     event.preventDefault();
 
@@ -336,3 +340,6 @@ function logout() {
     localStorage.removeItem("userId")
     location.href = "./index.html";
 }
+
+
+
