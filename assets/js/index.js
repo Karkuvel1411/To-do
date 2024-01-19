@@ -1,7 +1,8 @@
 // Task add function ===========> user add the TASK
 
-const url = 'http://localhost:8080/tasks';
+const url = 'https://to-do-app-olyr.onrender.com/tasks/';
 const taskTable = document.getElementById('taskTable');
+
 
 
 fetch(url)
@@ -111,11 +112,11 @@ function updateTask() {
         alert("Title and Deacription Can not be empty")
      }else{
     JSON.stringify(localStorage.setItem("updatetask", updatedTask))
-    console.log(updatedTask)
+    console.log("Updates Task====>"+updatedTask)
 
  
     // Fetch to update the task on the server
-    fetch(`http://localhost:8080/tasks/${localId}`, {
+    fetch(`${url}${localId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -147,7 +148,7 @@ function deleteTask(taskId) {
     event.preventDefault();
 
     // Send a request to the server to delete the task
-    const delurl = `http://localhost:8080/tasks/${taskId}`
+    const delurl = `${url}${taskId}`
     const delrequest = {
         method: 'DELETE',
     }
@@ -165,7 +166,7 @@ function deleteTask(taskId) {
             rowToDelete.remove();
         })
         .catch(error => {
-            alert('Error deleting task:', error);
+            alert(' Deleting task:', error);
         });
 }
 function completeTask(TaskComid) {
@@ -174,7 +175,7 @@ function completeTask(TaskComid) {
     event.preventDefault();
 
     // Send a request to the server to delete the task
-    const statusurl = `http://localhost:8080/tasks/${TaskComid}`;
+    const statusurl = `${url}${TaskComid}`;
 
     fetch(statusurl)
         .then(response => {
@@ -212,7 +213,7 @@ function finishtask(finishtaskid, finishtaskdesc, finishtasktitle, finishtasksta
 
     console.log(updatedTask);
 
-    fetch(`http://localhost:8080/tasks/${a}`, {
+    fetch(`${url}${a}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -245,7 +246,7 @@ function holdTask(holdid) {
     event.preventDefault();
 
     // Send a request to the server to delete the task
-    const statusurl = `http://localhost:8080/tasks/${holdid}`;
+    const statusurl = `${url}${holdid}`;
 
     fetch(statusurl)
         .then(response => {
@@ -283,7 +284,7 @@ function taskhold(holdtaskid, holdtaskdesc, holdtasktitle, holdtaskstatus, holdt
 
     console.log(updatedTask);
 
-    fetch(`http://localhost:8080/tasks/${a}`, {
+    fetch(`${url}${a}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

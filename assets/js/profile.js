@@ -1,4 +1,4 @@
-const url = 'http://localhost:8080/users';
+const url = 'https://to-do-app-olyr.onrender.com/users';
 
 fetch(url)
     .then(response => {

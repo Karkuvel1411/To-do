@@ -1,13 +1,17 @@
+const url = "https://to-do-app-olyr.onrender.com/";
+
+
 function signin(event) {
     event.preventDefault();
     const email = document.getElementById("useremail").value;
     const password = document.getElementById("password").value;
 
-    const url = 'http://localhost:8080/users';
+    const users_url = `${url}users`;
 
-    fetch(url)
+    fetch(users_url)
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             let found = false;
             for (let i = 0; i < data.length; i++) {
                 if (data[i].email === email && data[i].password === password) {

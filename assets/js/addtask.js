@@ -1,3 +1,5 @@
+const url = "https://to-do-app-olyr.onrender.com/tasks";
+
 function addTask() {
     event.preventDefault();
 
@@ -30,18 +32,18 @@ function addTask() {
             body: JSON.stringify(taskObj)
         }
 
-        fetch('http://localhost:8080/tasks', requestOption)
+        fetch(`${url}`, requestOption)
             .then(res => res.json())
             .then(res => {
-                console.log(res);
                 alert('Task added');
+                location.href = "../../Html_pages/index.html";
+              console.log(res);
             })
             .catch(err => {
                 console.log(err);
                 alert('An error occurred. Please try again later.');
             });
-            location.href = "../../Html_pages/index.html";
-
+           
     } else {
         alert("You are not logged in");
     }

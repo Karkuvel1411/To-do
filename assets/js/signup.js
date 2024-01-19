@@ -44,7 +44,7 @@ const pass = document.getElementById("password").value;
             const otp_inp = document.getElementById('otp_inp');
             if (otp_inp.value == otp_val) {
 
-                const url = 'http://localhost:8080/users';
+                const url = 'https://to-do-app-olyr.onrender.com/users';
 
                 event.preventDefault();
 
@@ -60,15 +60,6 @@ const pass = document.getElementById("password").value;
                     phonenumber: phone
                 };
                 console.log(userobj);
-                
-                fetch(url).then(res => {
-                    return res.json()
-                })
-                    .then(res => {
-    
-                        console.log(res)
-                    })
-
                 const requestoption = {
                     method: 'POST',
                     headers: {
@@ -76,7 +67,9 @@ const pass = document.getElementById("password").value;
                     },
                     body: JSON.stringify(userobj)
                 }
+            
                 fetch(url, requestoption).then(res => {
+                    alert("Hi");
                     return res.json();
                 })
                     .then(res => {
@@ -84,7 +77,6 @@ const pass = document.getElementById("password").value;
                         
 
                     })
-                    location.href = "../../Html_Pages/login.html";
             }
             else {
                 alert("Invalid OTP");
