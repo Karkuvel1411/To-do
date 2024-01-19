@@ -1,5 +1,5 @@
 const { origin } = window.location;
-const logo = `${origin}/Html_Pages/index.html`;
+const logo = `${origin}/index.html`;
 // const wishlist = `${origin}/pages/orders/wishlistpage.html`;
 // const orders = `${origin}/pages/orders/myorderspage.html`;
 const profile = `${origin}/Html_Pages/profile.html`;

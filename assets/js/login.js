@@ -23,7 +23,7 @@ function signin(event) {
 
             if (found) {
                 // localStorage.setItem('userId', user.id);
-                location.href = "./index.html";
+                location.href = "../../index.html";
             } else {
                 alert("Invalid email or password");
             }
