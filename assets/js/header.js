@@ -1,10 +1,10 @@
 const { origin } = window.location;
-const logo = `${origin}/index.html`;
+const logo = `${origin}/To-do/index.html`;
 // const wishlist = `${origin}/pages/orders/wishlistpage.html`;
 // const orders = `${origin}/pages/orders/myorderspage.html`;
-const profile = `${origin}/Html_Pages/profile.html`;
-const sign_up = `${origin}/Html_Pages/signup.html`;
-const login = `${origin}/Html_Pages/login.html`;9
+const profile = `${origin}/To-do/Html_Pages/profile.html`;
+const sign_up = `${origin}/To-do/Html_Pages/signup.html`;
+const login = `${origin}/To-do/Html_Pages/login.html`;9
 
 
 const after_login = `
