@@ -51,13 +51,11 @@ const pass = document.getElementById("password").value;
                 let name = document.getElementById("name").value.trim();
                 let email = document.getElementById("gmail").value.trim();
                 let password = document.getElementById("password").value.trim();
-                let phone = document.getElementById("phone").value.trim();
 
                 const userobj = {
                     email: email,
                     password: password,
-                    name: name,
-                    phonenumber: phone
+                    name: name
                 };
                 console.log(userobj);
                 const requestoption = {

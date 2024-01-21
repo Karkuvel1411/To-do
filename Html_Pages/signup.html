@@ -17,22 +17,23 @@
     </header>
 
     <section class="form-section">
-        <form onsubmit="signup(event)">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required pattern="[A-Za-z\s]{1,}">
-
-            <label for="email">Email:</label>
-            <input type="email" id="gmail" name="email" pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/" required>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" required>
-
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter 10-digit phone number"
-                required>
-
-            <button  type="submit">Send otp</button>
-        </form>
+        <section class="signup-container">
+            <div class="signup-content">
+               <h1>SIGNUP</h1> 
+               <p class="signup-para">Get access to your <br> orders wishlist and <br> recomandations</p>  
+               <img src="https://cdn-icons-png.flaticon.com/512/3456/3456388.png" class="signup-image" width="190px" alt="">           
+            </div>
+            <form onsubmit="signup(event)" class="signup-form" >
+                 <h2>Registration</h2>
+             <div class="inputs">
+               <input type="text" id="name" name="name" placeholder="UserName"  required pattern="[A-Za-z\s]{1,}">
+               <input type="mail" name="email" id="gmail" placeholder="Mail Id">
+               <input type="password" id="password"  name="password" placeholder="Password">
+              
+             </div>
+                <button  class="btn" type="submit" ><p class="btnp"> Request OTP</p></button> 
+            </form>
+      </section>
 
         <!-- popup -->
         <div class="popup-form">

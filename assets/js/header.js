@@ -1,16 +1,19 @@
 const { origin } = window.location;
-const logo = `${origin}/To-do/index.html`;
+const logo = `${origin}/index.html`;
 // const wishlist = `${origin}/pages/orders/wishlistpage.html`;
 // const orders = `${origin}/pages/orders/myorderspage.html`;
-const profile = `${origin}/To-do/Html_Pages/profile.html`;
-const sign_up = `${origin}/To-do/Html_Pages/signup.html`;
-const login = `${origin}/To-do/Html_Pages/login.html`;9
+const profile = `${origin}/Html_Pages/profile.html`;
+const sign_up = `${origin}/Html_Pages/signup.html`;
+const login = `${origin}/Html_Pages/login.html`;
+const tasklist = `${origin}/Html_Pages/listTask.html`;
 
 
 const after_login = `
     <nav>
         <a href="${logo}" class="logo">My App</a>
         <ul class="nav-links">
+        <li><a href="${tasklist}">TaskLIst</a></li>
+
             <li><a href="${profile}">Profile</a></li>
             <li><a onclick="openPopup()" id="openPopupBtn">Logout</a></li>
         </ul>

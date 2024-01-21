@@ -36,7 +36,7 @@ function addTask() {
             .then(res => res.json())
             .then(res => {
                 alert('Task added');
-                location.href = "../../index.html";
+                location.href = "../../Html_Pages/ListTask.html";
               console.log(res);
             })
             .catch(err => {

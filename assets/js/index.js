@@ -1,9 +1,5 @@
-// Task add function ===========> user add the TASK
-
 const url = 'https://to-do-app-olyr.onrender.com/tasks/';
 const taskTable = document.getElementById('taskTable');
-
-
 
 fetch(url)
     .then(response => {
@@ -13,26 +9,16 @@ fetch(url)
         return response.json();
     })
     .then(data => {
-
         const userId = localStorage.getItem("userId");
-        console.log(userId)
-        console.log(data[0].date)
-
-        // Filter data based on userId
-
         const userTasks = data.filter(task => task.UserId === userId);
-        console.log("usertask ======>"+userTasks);
-
-        tasklist(userTasks);
+        taskList(userTasks);  // Update variable name here
     })
     .catch(error => {
         console.error('Error fetching data:', error);
     });
 
-
-function tasklist(data) {
-    const taskList = document.getElementById('taskList');
-
+function taskList(data) {  // Update function name here
+    const taskListContainer = document.getElementById('taskList');  // Update variable name here
 
     for (let i = 0; i < data.length; i++) {
         const taskWrapper = document.createElement('div');
@@ -40,34 +26,31 @@ function tasklist(data) {
 
         let statusCode = "";
 
-        if(data[i].status == 1){
-            statusCode = "Completed"
-        }else if(data[i].status == 2){
-            statusCode = "Hold"
-        }else{
-            statusCode = "Pending"
+        if (data[i].status == 1) {
+            statusCode = "Completed";
+        } else if (data[i].status == 2) {
+            statusCode = "Hold";
+        } else {
+            statusCode = "Pending";
         }
 
         taskWrapper.innerHTML = `
-     <ul class="responsive-table">
-               
-     <li class="table-row">
-         <div class="col col-2" data-label="Task Name">${data[i].Title}</div>
-         <div class="col col-1" data-label="Task Name">${data[i].Desc}</div>
-         <div class="col col-2" data-label="Due Date"> ${data[i].date}</div>
-         <div class="col col-3" data-label="Priorty"><span class="Pr-1">${statusCode}</span></div>
-         <button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}','${data[i].Date}')">Edit</button>
-         <button class="delete-btn" onclick="deleteTask(${data[i].id})">Delete</button>
-         
-         <img src="../assets/Images/Green_tick.svg.png"  onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
-         <img src="../assets/Images/Red_X.svg.png" width="20px" id="holdnone" height="20px" onclick="holdTask(${data[i].id})"  class="notcomplete" alt="">
-     </li>
- </ul>
-     `;
+            <ul class="responsive-table">
+                <li class="table-row">
+                    <div class="col col-2" data-label="Task Name">${data[i].Title}</div>
+                    <div class="col col-1" data-label="Task Name">${data[i].Desc}</div>
+                    <div class="col col-2" data-label="Due Date"> ${data[i].Date}</div>
+                    <div class="col col-3" data-label="Priorty"><span class="Pr-1">${statusCode}</span></div>
+                    <button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}','${data[i].Date}')">Edit</button>
+                    <button class="delete-btn" onclick="deleteTask(${data[i].id})">Delete</button>
+                    <img src="../assets/Images/Green_tick.svg.png" onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
+                    <img src="../assets/Images/Red_X.svg.png" width="20px" id="holdnone" height="20px" onclick="holdTask(${data[i].id})" class="notcomplete" alt="">
+                </li>
+            </ul>
+        `;
 
-        taskList.appendChild(taskWrapper);
+        taskListContainer.appendChild(taskWrapper);  // Update variable name here
     }
-
 }
 
 
@@ -81,66 +64,69 @@ function editTask(taskId, taskTitle, taskDescription,taskdate) {
     localStorage.setItem("TaskId", taskId);
     localStorage.setItem("TaskName", taskTitle);
     localStorage.setItem("TaskDescription", taskDescription);
-    localStorage.setItem("TaskDate", taskdate);
+    const currentDate = new Date();
+    const dateString = currentDate.toDateString();
+    localStorage.setItem('TaskDate', dateString);
 
 
     // Set values in the edit form
     document.getElementById("editTaskName").value = taskTitle;
     document.getElementById("editTaskDescription").value = taskDescription;
+    document.getElementById("date").value=dateString;
 
     // Show the edit form overlay
     document.getElementById("editOverlay").style.display = "flex";
 }
-
 function updateTask() {
     // Retrieve task details from localStorage
     let localId = localStorage.getItem("TaskId");
-    let date = localStorage.getItem("TaskDate");
     let localTitle = document.getElementById("editTaskName").value;
     let localDescription = document.getElementById("editTaskDescription").value;
     let userId = localStorage.getItem("userId");
+
+    // Get the updated date from the form
+    let updatedDate = document.getElementById("date").value;
 
     const updatedTask = {
         Title: localTitle,
         Desc: localDescription,
         UserId: userId,
         id: localId,
-        Date: new Date(date).toLocaleDateString()
-         
+        Date: updatedDate, // Update the Date property with the new date
     };
-    if (!localTitle.trim() && !localDescription.trim()) {
-        alert("Title and Deacription Can not be empty")
-     }else{
-    JSON.stringify(localStorage.setItem("updatetask", updatedTask))
-    console.log("Updates Task====>"+updatedTask)
 
- 
-    // Fetch to update the task on the server
-    fetch(`${url}${localId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedTask),
-    })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! Status: ${res.status}`);
-            } else {
-                return res.json();
-                console.log(res,json());
-            }
+    if (!localTitle.trim() || !localDescription.trim()) {
+        alert("Title and Description cannot be empty");
+    } else {
+        // Update the task in localStorage
+        localStorage.setItem("updatetask", JSON.stringify(updatedTask));
+
+        // Fetch to update the task on the server
+        fetch(`${url}${localId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedTask),
         })
-        .then(data => {
-            console.log(data);
-            // Close the edit form overlay after updating
-            document.getElementById("editOverlay").style.display = "none";
-        })
-        .catch(error => {
-            console.error('Error updating task:', error);
-        });
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! Status: ${res.status}`);
+                } else {
+                    return res.json();
+                }
+            })
+            .then(data => {
+                console.log(data);
+                // Close the edit form overlay after updating
+                document.getElementById("editOverlay").style.display = "none";
+            })
+            .catch(error => {
+                console.error('Error updating task:', error);
+            });
+    }
 }
-}
+
 
 // This function we delete a that task so we write a delete function
 

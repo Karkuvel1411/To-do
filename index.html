@@ -10,61 +10,24 @@
 </head>
 
 <body>
-   <header id="userLogin">
+ <header id="userLogin">
 
-   </header>
-    <!-- <nav>
-        <a href="./index.html" class="logo">My App</a>
-        <ul class="nav-links">
-            <li><a href="./signup.html">Signup</a></li>
-            <li><a href="./login.html">Login</a></li>
-            <li><a href="./profile.html">Profile</a></li>
-            <li class="popup" id="openPopupBtn">Logout</li>
-        </ul>
-    </nav> -->
-    <div id="popup" class="popup-container">
-        <div class="popup-content">
-            <h2>Are You Sure...!</h2>
-            <p>You Want To Log Out</p>
-            <button onclick="logout()">Yes</button><button onclick="closePopup()">No</button>
-        </div>
+ </header>
+
+
+ 
+ <div class="hero">
+    <div class="left-col-hero">
+      <h1>Welcome To Aaha</h1>
+      <h1>Task Management</h1>
+      <p>Focus, from work to play with the best <strong>To Do </strong> list app. </p>
+      <a href="./Html_Pages/Addtask.html"><button class="btn">Start Your Task</button></a>
     </div>
-    <section class="editform">
-        <div class="overlay" id="editOverlay">
-            <div class="popup1">
-                <span class="close-btn" onclick="closeEditPopup()">X</span>
-                <h2>Edit Task</h2>
-                <form id="editForm" action="#" method="post">
-                    <input type="hidden" name="id" id="Taskid">
-                    <label for="editTaskName">Task Name:</label>
-                    <input type="text" id="editTaskName" name="editTaskName">
-                    <label for="editTaskDescription">Task Description:</label>
-                    <textarea id="editTaskDescription" name="editTaskDescription" rows="4"></textarea>
-                    <button type="button" onclick="updateTask()" class="editbtn">Update Task</button>
-                </form>
-            </div>
-        </div>
-    </section>
-    <a class="taskadd" href="./Html_Pages/Addtask.html"><button>Add Task</button></a>
-  
-<h1 class="heading">TASK LIST...</h1>
-
-
-<div id="taskList" class="task-list">
-        <ul class="responsive-table">
-        <li class="table-header">
-            <div class="col col-2">Tasks</div>
-            <div class="col col-1">Tasks</div>
-            <div class="col col-2">Due Date</div>
-            <div class="col col-3">Status</div>
-            <div class="col col-4">Actions</div>
-
-        </li>
-    </ul>
-</div>
-
-<script src="./assets/js/header.js"></script>
-<script src="./assets/js/index.js"></script>
+    <div class="right-col-hero">
+      <img src="https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/Hero_ToDo_960x615_2x_1_RE3HTxG?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=3840&qlt=100&fmt=png-alpha&fit=constrain" width="500px" alt="" srcset="">
+    </div>
+  </div>
+  <script src="./assets/js/header.js"></script>
 </body>
 
 </html>

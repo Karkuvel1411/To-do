@@ -52,61 +52,188 @@
         color: #ecf0f1;
         cursor: pointer;
     }
-
-
-
-
-
-
-/* signup */
-
- .form-section{
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+/* ---------------------------signup page------------------------------ */
+.signup-container {
+    width: 700px;
+    height: 600px;
+    border: 1px solid black;
+    position: relative;
+    left: 25%;
+    top: 130px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-label {
+    justify-content: space-evenly;
+  }
+  
+  .signup-content {
+    background-color: #3b5065;
+    position: relative;
+    color: white;
+    right: 29px;
+    width: 300px;
+  }
+  
+  .otp {
+    width: 300px;
+    height: 130px;
+    border: 1px solid white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    top: 240px;
+    right: 60px;
+  
+  }
+  
+  .signup-para {
+    position: relative;
+    top: 130px;
+    left: 60px;
+  }
+  
+  .signup-content h1 {
+    position: relative;
+    left: 60px;
+    top: 120px;
+  }
+  
+  .signup-image {
+    position: relative;
+    top: 200px;
+    left: 50px;
+  }
+  
+  .otp p {
+    height: 40px;
+    text-align: center;
+  }
+  
+  .otp .request-otp {
+    position: relative;
+    top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 7px;
+  
+  }
+  
+  .request-otp p {
+    position: relative;
+    top: 10px;
+  }
+  
+  .otp .have-account {
+    background-color: orangered;
+  }
+  
+  .have-account p {
+    position: relative;
+    top: 10px;
+    color: white;
+  }
+  
+  .signup-form input[type=text] {
     display: block;
-    margin-bottom: 8px;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 16px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.verify {
-    background-color: #4caf50;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.verify:hover {
-    background-color: #45a049;
-}
+    position: relative;
+    top: 110px;
+    height: 15px;
+    width: 280px;
+    right: 75px;
+    border: 1px solid rgb(121, 120, 120);
+    outline: none;
+    padding: 14px;
+    font-size: 12px;
+    position: relative;
+    top: 150px;
+    border-top: white;
+    border-left: white;
+    border-right: white;
+  }
+  
+  .signup-form input[type=mail] {
+    display: block;
+    position: relative;
+    top: 110px;
+    height: 15px;
+    width: 280px;
+    right: 75px;
+    border: 1px solid rgb(121, 120, 120);
+    outline: none;
+    padding: 14px;
+    font-size: 12px;
+    position: relative;
+    top: 165px;
+    border-top: white;
+    border-left: white;
+    border-right: white;
+  }
+  
+  .signup-form input[type=password] {
+    display: block;
+    position: relative;
+    top: 110px;
+    height: 15px;
+    width: 280px;
+    right: 75px;
+    border: 1px solid rgb(121, 120, 120);
+    outline: none;
+    padding: 14px;
+    font-size: 12px;
+    position: relative;
+    top: 180px;
+    border-top: white;
+    border-left: white;
+    border-right: white;
+  }
+  
+  .or-1 {
+    position: relative;
+    top: 11px;
+  }
+  
+  .signup-form h2 {
+    position: relative;
+    top: 160px;
+    left: 30px;
+  }
+  
+  .inputs {
+    margin-left: 30px;
+  }
+  
+  .signup-form {
+    position: relative;
+    left: 50px;
+  }
+  /* Style for the button */
+  .btn {
+    position: relative;
+    top: 200px;
+    left: 20px;
+    background-color:#304355; /* Green background color */
+    color:white; /* White text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add some padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make it inline block */
+    font-size: 16px; /* Set font size */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    border-radius: 5px; /* Add some border-radius */
+  }
+  
+  /* Style for the paragraph inside the button */
+  .btnp {
+    margin: 0; /* Remove margin */
+  }
+  
+  /* Hover effect for the button */
+  .btn:hover {
+    background-color: #3b5065;
+    color: white; /* Darker green on hover */
+  }
+  
 
 /* popup */
-.popup-form {
+/* .popup-form {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
@@ -115,7 +242,7 @@ input {
     justify-content: center;
     height: 100vh;
     background-color: #f4f4f4;
-}
+} */
 
 .popup-container {
     display: none;

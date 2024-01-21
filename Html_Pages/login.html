@@ -12,19 +12,20 @@
 
     </header>
     
-<section class="login">
-<div class="login-container">
-    <h2>Login</h2>
-    <form class="login-form" onsubmit="signin(event)">
-        <label for="username">Useremail:</label>
-        <input type="text" id="useremail" name="username" required autofocus>
-    
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit" >Login</button>
-        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
-    </form> 
-    <a href="./forgot.html" class="resetpass">Forgot Password</button>
+    <section class="login-content">
+        <form onsubmit="signin(event)" class="login-page">
+             <h1 class="site-name">AAHA</h1>
+             <input class="mail" name="username" id="useremail" type="text" placeholder="Email address" required>
+             <input id="password" class="password" type="password" placeholder="Password" required>
+             <button type="submit" class="login">LOG IN</button>
+             <div class="border-4"></div><div class="border-5"></div>
+             <p class="or">OR</p>
+             <a class="fpassword" href="./forgot.html"><h5>Forget Your Password?</h5></a>
+             <div class="border-6"></div>
+             <p class="sign-up">Dont't Have An Account? <a href="../Html_Pages/signup.html">Sign Up</a></p>
+
+        </form>
+     </section>
  
     <script src="../assets/js/header.js"></script>
 
