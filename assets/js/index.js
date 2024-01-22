@@ -38,8 +38,8 @@ function taskList(data) {  // Update function name here
         if(data[i].status != 1){
             temp = `<button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}','${data[i].Date}')">Edit</button>
             <button class="delete-btn" onclick="deleteTask(${data[i].id})">Delete</button>
-            <img src="../assets/Images/Green_tick.svg.png" onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
-            <img src="../assets/Images/Red_X.svg.png" width="20px" id="holdnone" height="20px" onclick="holdTask(${data[i].id})" class="notcomplete" alt="">`
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Green_tick.png" onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/video-photography-multimedia/pause-button-red-icon.png" width="20px" id="holdnone" height="20px" onclick="holdTask(${data[i].id})" class="notcomplete" alt="">`
         }
 
 
