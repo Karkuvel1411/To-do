@@ -25,7 +25,6 @@ function signin(event) {
                 // localStorage.setItem('userId', user.id);
                 alert("Successfully login");
                 location.href = `${window.location.origin}/To-do/index.html`;
-                location.reload();
 
             } else {
                 alert("Invalid email or password");
