@@ -71,7 +71,7 @@ const pass = document.getElementById("password").value;
                 })
                     .then(res => {
                         alert("Account Created Successfully");
-                        location.href = `${window.location.origin}/To-do/Html_Pages/login.html`;
+                        location.href = `${window.location.origin}/To-do/login.html`;
                         location.reload();
                         
 

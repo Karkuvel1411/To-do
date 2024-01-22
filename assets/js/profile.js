@@ -10,7 +10,7 @@ fetch(url)
     .then(data => {
         console.log(data);
         let currentuser;
-        let usermail, username, usernumber; 
+        let usermail, username; 
 
         const userId = localStorage.getItem("userId");
         console.log(userId)
@@ -18,7 +18,7 @@ fetch(url)
             if (userId == data[i].id) {
                 usermail = data[i].email;
                 username = data[i].name;
-                usernumber = data[i].phonenumber;
+                // usernumber = data[i].phonenumber;
                 currentuser = data[i]; 
                 break; 
             }
@@ -26,7 +26,7 @@ fetch(url)
 
         console.log("User Email:", usermail);
         console.log("User Name:", username);
-        console.log("User Phone Number:", usernumber);
+        // console.log("User Phone Number:", usernumber);
         console.log("Current User:", currentuser);
         document.getElementById("name").value=usermail;
        document.getElementById("email").value= username;

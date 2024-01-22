@@ -24,7 +24,7 @@ const after_login = `
 
 const before_login = `
 <nav>
-<a href="${logo}" class="logo">My App</a>
+<a href="${logo}" class="logo">ToDo</a>
 <ul class="nav-links">
     <li><a href="${sign_up}">Signup</a></li>
     <li><a href="${login}">Login</a></li>
