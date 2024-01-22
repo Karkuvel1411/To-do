@@ -325,7 +325,7 @@ function closeEditPopup() {
 
 function logout() {
     localStorage.removeItem("userId")
-    location.href = "./index.html";
+    location.href = "./To-do/index.html";
 }
 
 
