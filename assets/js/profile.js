@@ -31,6 +31,7 @@ fetch(url)
         document.getElementById("name").value=usermail;
        document.getElementById("email").value= username;
        document.getElementById("number").value=usernumber;
+       location.reload();
 
 
     })

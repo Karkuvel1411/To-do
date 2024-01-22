@@ -55,7 +55,9 @@ function taskList(data) {  // Update function name here
             </ul>
         `;
 
-        taskListContainer.appendChild(taskWrapper);  // Update variable name here
+        taskListContainer.appendChild(taskWrapper); 
+        location.reload();
+        // Update variable name here
     }
 }
 
@@ -64,6 +66,7 @@ function taskList(data) {  // Update function name here
 // This is Edit function we send a request to edit the task name an dtask description 
 function editTask(taskId, taskTitle, taskDescription,taskdate) {
     console.log(taskdate);
+
     document.getElementById('editOverlay').style.display = 'flex';
 
     // Save task details to localStorage for later retrieval in the updateTask function
@@ -126,6 +129,8 @@ function updateTask() {
                 console.log(data);
                 // Close the edit form overlay after updating
                 document.getElementById("editOverlay").style.display = "none";
+                location.reload();
+
             })
             .catch(error => {
                 console.error('Error updating task:', error);
@@ -156,6 +161,8 @@ function deleteTask(taskId) {
         .then(() => {
             const rowToDelete = taskTable.querySelector(`[data-task-id="${taskId}"]`);
             rowToDelete.remove();
+            location.reload();
+
         })
         .catch(error => {
             alert(' Deleting task:', error);
@@ -296,6 +303,7 @@ function taskhold(holdtaskid, holdtaskdesc, holdtasktitle, holdtaskstatus, holdt
         })
         .then(data => {
             console.log(data);
+            location.reload();
 
             // Close the edit form overlay after updating
             // document.getElementById("editOverlay").style.display = "none";

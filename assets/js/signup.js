@@ -72,6 +72,7 @@ const pass = document.getElementById("password").value;
                 })
                     .then(res => {
                         alert("Account Created Successfully");
+                        location.reload();
                         
 
                     })

@@ -43,6 +43,8 @@ function addTask() {
             .catch(err => {
                 console.log(err);
                 alert('An error occurred. Please try again later.');
+                location.reload();
+
             });
            
     } else {

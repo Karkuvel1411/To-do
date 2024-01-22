@@ -23,7 +23,9 @@ function signin(event) {
 
             if (found) {
                 // localStorage.setItem('userId', user.id);
-                location.href = "../../To-do/index.html";
+                location.href = `${window.location.origin}/To-do/index.html`;
+                location.reload();
+
             } else {
                 alert("Invalid email or password");
             }
