@@ -1,11 +1,11 @@
-const { href } = window.location;
-const logo = `${href}index.html`;
+const { origin } = window.location;
+const logo = `${origin}/To-do/index.html`;
 // const wishlist = `${origin}/pages/orders/wishlistpage.html`;
 // const orders = `${origin}/pages/orders/myorderspage.html`;
-const profile = `${href}/Html_Pages/profile.html`;
-const sign_up = `${href}/Html_Pages/signup.html`;
-const login = `${href}/Html_Pages/login.html`;
-const tasklist = `${href}/Html_Pages/listTask.html`;
+const profile = `${origin}/To-do/Html_Pages/profile.html`;
+const sign_up = `${origin}/To-do/Html_Pages/signup.html`;
+const login = `${origin}/To-do/Html_Pages/login.html`;
+const tasklist = `${origin}/To-do/Html_Pages/listTask.html`;
 
 
 const after_login = `
