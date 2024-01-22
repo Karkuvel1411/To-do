@@ -1,5 +1,4 @@
 const url = "https://to-do-app-olyr.onrender.com/tasks";
-const { origin } = window.location;
 
 function addTask() {
     event.preventDefault();
@@ -37,7 +36,8 @@ function addTask() {
             .then(res => res.json())
             .then(res => {
                 alert('Task added');
-                location.href = `${origin}/To-do/Html_Pages/ListTask.html`;
+                console.log("dfdfdfd");
+                location.href = `${window.location.origin}/To-do/Html_Pages/ListTask.html`;
               console.log(res);
             })
             .catch(err => {

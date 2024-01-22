@@ -25,14 +25,23 @@ function taskList(data) {  // Update function name here
         taskWrapper.classList.add('container');
 
         let statusCode = "";
-
+        let temp = ""
         if (data[i].status == 1) {
             statusCode = "Completed";
+            
         } else if (data[i].status == 2) {
             statusCode = "Hold";
         } else {
             statusCode = "Pending";
         }
+
+        if(data[i].status != 1){
+            temp = `<button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}','${data[i].Date}')">Edit</button>
+            <button class="delete-btn" onclick="deleteTask(${data[i].id})">Delete</button>
+            <img src="../assets/Images/Green_tick.svg.png" onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
+            <img src="../assets/Images/Red_X.svg.png" width="20px" id="holdnone" height="20px" onclick="holdTask(${data[i].id})" class="notcomplete" alt="">`
+        }
+
 
         taskWrapper.innerHTML = `
             <ul class="responsive-table">
@@ -41,10 +50,7 @@ function taskList(data) {  // Update function name here
                     <div class="col col-1" data-label="Task Name">${data[i].Desc}</div>
                     <div class="col col-2" data-label="Due Date"> ${data[i].Date}</div>
                     <div class="col col-3" data-label="Priorty"><span class="Pr-1">${statusCode}</span></div>
-                    <button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}','${data[i].Date}')">Edit</button>
-                    <button class="delete-btn" onclick="deleteTask(${data[i].id})">Delete</button>
-                    <img src="../assets/Images/Green_tick.svg.png" onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
-                    <img src="../assets/Images/Red_X.svg.png" width="20px" id="holdnone" height="20px" onclick="holdTask(${data[i].id})" class="notcomplete" alt="">
+                    ${temp}
                 </li>
             </ul>
         `;
@@ -155,8 +161,12 @@ function deleteTask(taskId) {
             alert(' Deleting task:', error);
         });
 }
+
+
+
+
 function completeTask(TaskComid) {
-    document.getElementById("holdnone").style.display = 'none';
+   // document.getElementById("holdnone").style.display = 'none';
     // console.log(TaskComid);
     event.preventDefault();
 
@@ -215,7 +225,7 @@ function finishtask(finishtaskid, finishtaskdesc, finishtasktitle, finishtasksta
         })
         .then(data => {
             console.log(data);
-
+            location.reload();
             // Close the edit form overlay after updating
             // document.getElementById("editOverlay").style.display = "none";
         })
