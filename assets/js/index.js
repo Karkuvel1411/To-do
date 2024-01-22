@@ -56,7 +56,6 @@ function taskList(data) {  // Update function name here
         `;
 
         taskListContainer.appendChild(taskWrapper); 
-        location.reload();
         // Update variable name here
     }
 }
