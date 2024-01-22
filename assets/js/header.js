@@ -11,7 +11,7 @@ const tasklist = `${origin}/To-do/Html_Pages/ListTask.html`;
 
 const after_login = `
     <nav>
-        <a href="${logo}" class="logo">My App</a>
+        <a href="${logo}" class="logo">ToDo</a>
         <ul class="nav-links">
             <li><a href="${tasklist}">TaskList</a></li>
              <li><a href="${profile}">Profile</a></li>

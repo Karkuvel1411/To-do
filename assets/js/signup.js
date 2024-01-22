@@ -67,11 +67,11 @@ const pass = document.getElementById("password").value;
                 }
             
                 fetch(url, requestoption).then(res => {
-                    alert("Hi");
                     return res.json();
                 })
                     .then(res => {
                         alert("Account Created Successfully");
+                        location.href = `${window.location.origin}/To-do/Html_Pages/login.html`;
                         location.reload();
                         
 

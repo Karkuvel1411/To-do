@@ -7,19 +7,17 @@ function addTask() {
     if (localStorage.getItem("userId") !== null) {
         let title = document.getElementById('title').value;
         let description = document.getElementById('desc').value;
+        let date = document.getElementById("cdate").value;
         
         let userid = localStorage.getItem("userId")
-        var date = new Date();
-        var n = date.toDateString();
-        var time = date.toLocaleTimeString();
+    
 
-        console.log('date:', n);
-        console.log('time:', time);
+   
 
         const taskObj = {
             Title: title,
             Desc: description,
-            date: n,
+            Date: date,
             UserId:userid,
             status:0
         }

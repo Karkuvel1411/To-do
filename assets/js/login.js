@@ -23,7 +23,8 @@ function signin(event) {
 
             if (found) {
                 // localStorage.setItem('userId', user.id);
-                location.href = `${window.location.origin}/To-do/index.html`;
+                alert("Successfully login");
+                console.log(location.href = `${window.location.origin}/To-do/index.html`);
                 location.reload();
 
             } else {
