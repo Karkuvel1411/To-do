@@ -36,7 +36,7 @@ function taskList(data) {  // Update function name here
         }
 
         if(data[i].status != 1){
-            temp = `<button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}','${data[i].Date}')">Edit</button>
+            temp = `<button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}')">Edit</button>
             <button class="delete-btn" onclick="deleteTask(${data[i].id})">Delete</button>
             <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Green_tick.png" onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
             <img src="https://uxwing.com/wp-content/themes/uxwing/download/video-photography-multimedia/pause-button-red-icon.png" width="20px" id="holdnone" height="20px" onclick="holdTask(${data[i].id})" class="notcomplete" alt="">`
@@ -64,8 +64,8 @@ function taskList(data) {  // Update function name here
 
 
 // This is Edit function we send a request to edit the task name an dtask description 
-function editTask(taskId, taskTitle, taskDescription,taskdate) {
-    console.log(taskdate);
+function editTask(taskId, taskTitle, taskDescription) {
+    //console.log(duedate);
 
     document.getElementById('editOverlay').style.display = 'flex';
 
@@ -73,15 +73,17 @@ function editTask(taskId, taskTitle, taskDescription,taskdate) {
     localStorage.setItem("TaskId", taskId);
     localStorage.setItem("TaskName", taskTitle);
     localStorage.setItem("TaskDescription", taskDescription);
-    const currentDate = new Date();
-    const dateString = currentDate.toDateString();
-    localStorage.setItem('TaskDate', dateString);
+    document.getElementById("date").value = localStorage.getItem("duedate");
+    console.log("Due Date================>"+localStorage.getItem("duedate"))
+    // const currentDate = new Date();
+    // const dateString = currentDate.toDateString();
+    // localStorage.setItem('TaskDate', dateString);
 
 
     // Set values in the edit form
     document.getElementById("editTaskName").value = taskTitle;
     document.getElementById("editTaskDescription").value = taskDescription;
-    document.getElementById("date").value=dateString;
+    
 
     // Show the edit form overlay
     document.getElementById("editOverlay").style.display = "flex";
@@ -94,7 +96,7 @@ function updateTask() {
     let userId = localStorage.getItem("userId");
 
     // Get the updated date from the form
-    let updatedDate = document.getElementById("date").value;
+    let updatedDate = localStorage.getItem("duedate");
 
     const updatedTask = {
         Title: localTitle,
