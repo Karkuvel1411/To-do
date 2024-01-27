@@ -73,8 +73,10 @@ function editTask(taskId, taskTitle, taskDescription) {
     localStorage.setItem("TaskId", taskId);
     localStorage.setItem("TaskName", taskTitle);
     localStorage.setItem("TaskDescription", taskDescription);
-    document.getElementById("date").value = localStorage.getItem("duedate");
-    console.log("Due Date================>"+localStorage.getItem("duedate"))
+    let duedate = document.getElementById("ddate").value;
+    console.log(duedate);
+    localStorage.setItem("updatedate",duedate)
+    
     // const currentDate = new Date();
     // const dateString = currentDate.toDateString();
     // localStorage.setItem('TaskDate', dateString);
@@ -94,16 +96,30 @@ function updateTask() {
     let localTitle = document.getElementById("editTaskName").value;
     let localDescription = document.getElementById("editTaskDescription").value;
     let userId = localStorage.getItem("userId");
+    let updatedate = localStorage.getItem("updatedate")
 
-    // Get the updated date from the form
-    let updatedDate = localStorage.getItem("duedate");
+    if (!updatedate) {
+        alert('Please enter a due date.');
+        return;
+      }
+      const dueDate = moment(updatedate, 'YYYY-MM-DD');
+      const currentTime = moment();
+  
+      if (dueDate.isBefore(currentTime)) {
+        alert('Please enter a future date.');
+        return;
+      }
+  
+      const remainingTime = moment.duration(dueDate.diff(currentTime));
+   
+
 
     const updatedTask = {
         Title: localTitle,
         Desc: localDescription,
         UserId: userId,
         id: localId,
-        Date: updatedDate, // Update the Date property with the new date
+        Date: remainingTime.humanize()+" Ago", // Update the Date property with the new date
     };
 
     if (!localTitle.trim() || !localDescription.trim()) {
