@@ -24,7 +24,13 @@ function signin(event) {
             if (found) {
                 // localStorage.setItem('userId', user.id);
                 alert("Successfully login");
-                location.href = `${window.location.origin}/To-do/index.html`;
+                if(window.location.origin==="http://127.0.0.1:5501"){
+                    location.href = `${window.location.origin}/To-do/index.html`;
+                }else{
+                    location.href = `${window.location.origin}/index.html`;
+
+                }
+                
 
             } else {
                 alert("Invalid email or password");

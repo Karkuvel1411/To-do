@@ -1,11 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remaining Time Example</title>
+  <!-- Include Moment.js library -->
+  <script src="https://momentjs.com/downloads/moment.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    .time-container {
+      margin: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-    <a href=""></a>
+
+<div>
+  <label for="dueDate">Enter Due Date:</label>
+  <input type="date" id="dueDate">
+  <button onclick="calculateRemainingTime()">Calculate Remaining Time</button>
+</div>
+
+<div class="time-container" id="remainingTimeContainer">
+  <!-- Remaining time will be displayed here -->
+</div>
+
+<script>
+  function calculateRemainingTime() {
+    const dueDateInput = document.getElementById('dueDate');
+    const dueDateValue = dueDateInput.value;
+
+    if (!dueDateValue) {
+      alert('Please enter a due date.');
+      return;
+    }
+
+    const dueDate = moment(dueDateValue, 'YYYY-MM-DD');
+    const currentTime = moment();
+
+    if (dueDate.isBefore(currentTime)) {
+      alert('Please enter a future date.');
+      return;
+    }
+
+    const remainingTime = moment.duration(dueDate.diff(currentTime));
+
+    // Display remaining time
+    document.getElementById('remainingTimeContainer').innerHTML = `
+      <p>Time remaining until the due date: <strong>${remainingTime.humanize()}</strong>.</p>
+      <p>(Due date: ${dueDate.format('MMMM Do YYYY')})</p>
+    `;
+  }
+</script>
+
 </body>
 </html>

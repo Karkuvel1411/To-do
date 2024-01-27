@@ -9,15 +9,28 @@ function addTask() {
         let description = document.getElementById('desc').value;
         let date = document.getElementById("cdate").value;
         
-        let userid = localStorage.getItem("userId")
-    
 
+        let userid = localStorage.getItem("userId")
+    localStorage.setItem("duedate",date);
+    if (!date) {
+        alert('Please enter a due date.');
+        return;
+      }
+      const dueDate = moment(date, 'YYYY-MM-DD');
+      const currentTime = moment();
+  
+      if (dueDate.isBefore(currentTime)) {
+        alert('Please enter a future date.');
+        return;
+      }
+  
+      const remainingTime = moment.duration(dueDate.diff(currentTime));
    
 
         const taskObj = {
             Title: title,
             Desc: description,
-            Date: date,
+            Date: remainingTime.humanize()+" Ago",
             UserId:userid,
             status:0
         }
