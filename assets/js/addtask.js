@@ -11,26 +11,26 @@ function addTask() {
         
 
         let userid = localStorage.getItem("userId")
-    localStorage.setItem("duedate",date);
-    if (!date) {
-        alert('Please enter a due date.');
-        return;
-      }
-      const dueDate = moment(date, 'YYYY-MM-DD-');
-      const currentTime = moment();
+    // localStorage.setItem("duedate",date);
+    // if (!date) {
+    //     alert('Please enter a due date.');
+    //     return;
+    //   }
+    //   const dueDate = moment(date).fromNow();
+    //   const currentTime = moment();
   
-      if (dueDate.isBefore(currentTime)) {
-        alert('Please enter a future date.');
-        return;
-      }
+    //   if (dueDate.isBefore(currentTime)) {
+    //     alert('Please enter a future date.');
+    //     return;
+    //   }
   
-      const remainingTime = moment.duration(dueDate.diff(currentTime));
+    //   const remainingTime = moment.duration(dueDate.diff(currentTime));
    
 
         const taskObj = {
             Title: title,
             Desc: description,
-            Date: remainingTime.humanize()+" Ago",
+            Date:date,
             UserId:userid,
             status:0
         }

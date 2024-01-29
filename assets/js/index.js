@@ -36,7 +36,7 @@ function taskList(data) {  // Update function name here
         }
 
         if(data[i].status != 1){
-            temp = `<button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}','${data[i].Date}')">Edit</button>
+            temp = `<button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}')">Edit</button>
             <button class="delete-btn" onclick="deleteTask(${data[i].id})">Delete</button>
             <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Green_tick.png" onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
             <img src="https://uxwing.com/wp-content/themes/uxwing/download/video-photography-multimedia/pause-button-red-icon.png" width="20px" id="holdnone" height="20px" onclick="holdTask(${data[i].id})" class="notcomplete" alt="">`
@@ -48,7 +48,7 @@ function taskList(data) {  // Update function name here
                 <li class="table-row">
                     <div class="col col-2" data-label="Task Name">${data[i].Title}</div>
                     <div class="col col-1" data-label="Task Name">${data[i].Desc}</div>
-                    <div class="col col-2" data-label="Due Date"> ${data[i].Date}</div>
+                    <div class="col col-2" data-label="Due Date"> ${moment(data[i].Date).fromNow()}</div>
                     <div class="col col-3" data-label="Priorty"><span class="Pr-1">${statusCode}</span></div>
                     ${temp}
                 </li>
@@ -64,7 +64,7 @@ function taskList(data) {  // Update function name here
 
 
 // This is Edit function we send a request to edit the task name an dtask description 
-function editTask(taskId, taskTitle, taskDescription,taskdate) {
+function editTask(taskId, taskTitle, taskDescription) {
     //console.log(duedate);
 
     document.getElementById('editOverlay').style.display = 'flex';
@@ -73,7 +73,6 @@ function editTask(taskId, taskTitle, taskDescription,taskdate) {
     localStorage.setItem("TaskId", taskId);
     localStorage.setItem("TaskName", taskTitle);
     localStorage.setItem("TaskDescription", taskDescription);
-    localStorage.setItem("taskdate", taskdate);
 
 
     
@@ -85,40 +84,29 @@ function editTask(taskId, taskTitle, taskDescription,taskdate) {
     // Set values in the edit form
     document.getElementById("editTaskName").value = taskTitle;
     document.getElementById("editTaskDescription").value = taskDescription;
-    document.getElementById("ddate").value=taskdate;
     
 
     // Show the edit form overlay
     document.getElementById("editOverlay").style.display = "flex";
 }
-function updateTask() {
+function updateTask(event) {
+    event.preventDefault();
     // Retrieve task details from localStorage
     let localId = localStorage.getItem("TaskId");
     let localTitle = document.getElementById("editTaskName").value;
     let localDescription = document.getElementById("editTaskDescription").value;
- let updatedate = localStorage.getItem("taskdate")
+    let updatedate = document.getElementById("ddate").value;
 
     // let updatedate = document.getElementById("ddate").value;
 
     console.log(updatedate)
     //  localStorage.setItem("dueupdatedate",updatedate);
 
-     //let userId = localStorage.getItem("userId");
-    //   let updatedate2 = localStorage.getItem("updatedate")
+     let userId = localStorage.getItem("userId");
+    //   let updatedate2 = localStorage.getItem("dueupdatedate")
 
-    // if (!updatedate2) {
-    //     alert('Please enter a due date.');
-    //     return;
-    //   }
-    //   const dueDate = moment(updatedate2, 'YYYY-MM-DD');
-    //   const currentTime = moment();
   
-    //   if (dueDate.isBefore(currentTime)) {
-    //     alert('Please enter a future date.');
-    //     return;
-    //   }
   
-    //   const remainingTime = moment.duration(dueDate.diff(currentTime));
    
 
 
@@ -127,16 +115,14 @@ function updateTask() {
         Desc: localDescription,
         UserId: userId,
         id: localId,
-        Date: updatedate, // Update the Date property with the new date
+        Date: updatedate
     };
 
     if (!localTitle.trim() || !localDescription.trim()) {
         alert("Title and Description cannot be empty");
     } else {
-        // Update the task in localStorage
         localStorage.setItem("updatetask", JSON.stringify(updatedTask));
 
-        // Fetch to update the task on the server
         fetch(`${url}${localId}`, {
             method: 'PUT',
             headers: {
