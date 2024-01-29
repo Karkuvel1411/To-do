@@ -36,7 +36,7 @@ function taskList(data) {  // Update function name here
         }
 
         if(data[i].status != 1){
-            temp = `<button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}')">Edit</button>
+            temp = `<button class="edit-btn" onclick="editTask(${data[i].id}, '${data[i].Title}', '${data[i].Desc}','${data[i].Date}')">Edit</button>
             <button class="delete-btn" onclick="deleteTask(${data[i].id})">Delete</button>
             <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Green_tick.png" onclick="completeTask(${data[i].id})" height="20px" width="20px" alt="" class="selectcom">
             <img src="https://uxwing.com/wp-content/themes/uxwing/download/video-photography-multimedia/pause-button-red-icon.png" width="20px" id="holdnone" height="20px" onclick="holdTask(${data[i].id})" class="notcomplete" alt="">`
@@ -64,7 +64,7 @@ function taskList(data) {  // Update function name here
 
 
 // This is Edit function we send a request to edit the task name an dtask description 
-function editTask(taskId, taskTitle, taskDescription) {
+function editTask(taskId, taskTitle, taskDescription,taskdate) {
     //console.log(duedate);
 
     document.getElementById('editOverlay').style.display = 'flex';
@@ -73,9 +73,9 @@ function editTask(taskId, taskTitle, taskDescription) {
     localStorage.setItem("TaskId", taskId);
     localStorage.setItem("TaskName", taskTitle);
     localStorage.setItem("TaskDescription", taskDescription);
-    let duedate = document.getElementById("ddate").value;
-    console.log(duedate);
-    localStorage.setItem("updatedate",duedate)
+    localStorage.setItem("taskdate", taskdate);
+
+
     
     // const currentDate = new Date();
     // const dateString = currentDate.toDateString();
@@ -85,6 +85,7 @@ function editTask(taskId, taskTitle, taskDescription) {
     // Set values in the edit form
     document.getElementById("editTaskName").value = taskTitle;
     document.getElementById("editTaskDescription").value = taskDescription;
+    document.getElementById("ddate").value=taskdate;
     
 
     // Show the edit form overlay
@@ -95,22 +96,29 @@ function updateTask() {
     let localId = localStorage.getItem("TaskId");
     let localTitle = document.getElementById("editTaskName").value;
     let localDescription = document.getElementById("editTaskDescription").value;
-    let userId = localStorage.getItem("userId");
-    let updatedate = localStorage.getItem("updatedate")
+ let updatedate = localStorage.getItem("taskdate")
 
-    if (!updatedate) {
-        alert('Please enter a due date.');
-        return;
-      }
-      const dueDate = moment(updatedate, 'YYYY-MM-DD');
-      const currentTime = moment();
+    // let updatedate = document.getElementById("ddate").value;
+
+    console.log(updatedate)
+    //  localStorage.setItem("dueupdatedate",updatedate);
+
+     //let userId = localStorage.getItem("userId");
+    //   let updatedate2 = localStorage.getItem("updatedate")
+
+    // if (!updatedate2) {
+    //     alert('Please enter a due date.');
+    //     return;
+    //   }
+    //   const dueDate = moment(updatedate2, 'YYYY-MM-DD');
+    //   const currentTime = moment();
   
-      if (dueDate.isBefore(currentTime)) {
-        alert('Please enter a future date.');
-        return;
-      }
+    //   if (dueDate.isBefore(currentTime)) {
+    //     alert('Please enter a future date.');
+    //     return;
+    //   }
   
-      const remainingTime = moment.duration(dueDate.diff(currentTime));
+    //   const remainingTime = moment.duration(dueDate.diff(currentTime));
    
 
 
@@ -119,7 +127,7 @@ function updateTask() {
         Desc: localDescription,
         UserId: userId,
         id: localId,
-        Date: remainingTime.humanize()+" Ago", // Update the Date property with the new date
+        Date: updatedate, // Update the Date property with the new date
     };
 
     if (!localTitle.trim() || !localDescription.trim()) {

@@ -31,15 +31,15 @@
             <div class="popup1">
                 <span class="close-btn" onclick="closeEditPopup()">X</span>
                 <h2>Edit Task</h2>
-                <form id="editForm" action="#" method="post">
+                <form onsubmit="updateTask()">
                     <input type="hidden" name="id" id="Taskid">
                     <label for="editTaskName">Task Name:</label>
                     <input type="text" id="editTaskName" name="editTaskName">
                     <label for="editTaskDescription">Task Description:</label>
                     <textarea id="editTaskDescription" name="editTaskDescription" rows="4"></textarea>
                     <label for="taskdate">Date</label>
-                    <input id="ddate" type="date">
-                    <button type="button" onclick="updateTask()" class="editbtn">Update Task</button>
+                    <input id="ddate" type="text">
+                    <button type="submit"  class="editbtn">Update Task</button>
                 </form>
             </div>
         </div>

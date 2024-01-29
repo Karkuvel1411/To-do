@@ -16,7 +16,7 @@ function addTask() {
         alert('Please enter a due date.');
         return;
       }
-      const dueDate = moment(date, 'YYYY-MM-DD');
+      const dueDate = moment(date, 'YYYY-MM-DD-');
       const currentTime = moment();
   
       if (dueDate.isBefore(currentTime)) {
